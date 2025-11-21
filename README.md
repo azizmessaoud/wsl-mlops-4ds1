@@ -1,4 +1,3 @@
-Here’s a professional README for your **wsl-mlops-4ds1** repository, showcasing your data science and ML engineering skills:
 
 ***
 
