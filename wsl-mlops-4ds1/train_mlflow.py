@@ -8,17 +8,17 @@ from sklearn.metrics import mean_squared_error, r2_score
 import joblib
 
 # 1. Generate/Load Data
-# Using synthetic data for demonstration as in previous labs
 from sklearn.datasets import make_regression
 X, y = make_regression(n_samples=100, n_features=2, noise=0.1, random_state=42)
 
 # 2. Split Data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 3. Set MLflow Experiment
-mlflow.set_experiment("Lab5_Productivity_Prediction")
+# 3. Set MLflow Tracking URI to use SQLite
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_experiment("Lab5_Excellence_SQLite")
 
-print("Starting MLflow run...")
+print("Starting MLflow run with SQLite backend...")
 
 # 4. Start MLflow Run
 with mlflow.start_run():
@@ -29,9 +29,8 @@ with mlflow.start_run():
         "n_jobs": -1
     }
     
-    # Log Parameters to MLflow
+    # Log Parameters
     mlflow.log_params(params)
-    print(f"Logged params: {params}")
     
     # Train Model
     model = LinearRegression(**params)
@@ -44,17 +43,16 @@ with mlflow.start_run():
     mse = mean_squared_error(y_test, predictions)
     r2 = r2_score(y_test, predictions)
     
-    # Log Metrics to MLflow
+    # Log Metrics
     mlflow.log_metric("mse", mse)
     mlflow.log_metric("r2_score", r2)
     print(f"Logged metrics - MSE: {mse:.4f}, R2: {r2:.4f}")
     
-    # Log Model to MLflow
+    # Log Model (and register it automatically if you want, but we'll do manual registration in UI)
     mlflow.sklearn.log_model(model, "linear_regression_model")
     print("Logged model artifact.")
     
-    # Save model locally (for API use)
+    # Save model locally
     joblib.dump(model, "model.joblib")
-    print("Saved model locally to model.joblib")
 
 print("Run complete! Check MLflow UI.")
