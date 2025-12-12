@@ -1,0 +1,15 @@
+artifact_uri: file:///home/unix/aziz-messaoud-4ds1-ml_project/wsl-mlops-4ds1/mlruns/748603774342676066/fda5c62c3f2643dab3793e33eb54bfda/artifacts
+end_time: 1765551784258
+entry_point_name: ''
+experiment_id: '748603774342676066'
+lifecycle_stage: active
+run_id: fda5c62c3f2643dab3793e33eb54bfda
+run_name: melodic-donkey-116
+run_uuid: fda5c62c3f2643dab3793e33eb54bfda
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765551782493
+status: 3
+tags: []
+user_id: unix
